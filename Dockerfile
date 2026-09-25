@@ -4,10 +4,10 @@ FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
 # Copia arquivos do Gradle primeiro para aproveitar cache
-COPY gradlew .
-COPY gradle gradle
-COPY build.gradle.kts .
-COPY settings.gradle.kts .
+COPY api/gradlew .
+COPY api/gradle gradle
+COPY api/build.gradle.kts .
+COPY api/settings.gradle.kts .
 
 RUN chmod +x gradlew
 
@@ -15,7 +15,7 @@ RUN chmod +x gradlew
 RUN ./gradlew dependencies --no-daemon || true
 
 # Copia o restante do projeto
-COPY . .
+COPY api .
 
 # Gera o JAR
 RUN ./gradlew bootJar --no-daemon

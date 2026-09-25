@@ -2,12 +2,12 @@ FROM eclipse-temurin:21-jdk AS build
 
 WORKDIR /app
 
-COPY gradlew .
-COPY gradle ./gradle
-COPY build.gradle.kts .
-COPY settings.gradle.kts .
+COPY api/gradlew .
+COPY api/gradle ./gradle
+COPY api/build.gradle.kts .
+COPY api/settings.gradle.kts .
 
-COPY src ./src
+COPY api/src ./src
 
 RUN chmod +x gradlew
 
